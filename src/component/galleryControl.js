@@ -3,7 +3,7 @@ import '../assets/css/galleryControl.scss';
 
 class GalleryControl extends Component{
     render() {
-        return 1
+        return <div className="control"></div>
     }
 }
 export default GalleryControl
