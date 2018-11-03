@@ -2,29 +2,54 @@ import React, { Component } from 'react';
 import GalleryImage from './galleryImage.js'
 import GalleryControl from './galleryControl.js'
 import '../assets/css/gallery.scss';
-// 获取图片相关数据
-var imageDatas = require('../assets/data/gallery.json');
-// 转换出图片URL
-imageDatas = (function getImageURL (imageDatasArr) {
-  imageDatasArr.forEach((item,index) => {
-    item.imageURL = require("../assets/images/" + (index + 1) + ".jpg");
-  })
-  return imageDatasArr;
-})(imageDatas)
+var stage = {}; // 舞台大小
 class Gallery extends Component {
   constructor(props){
     super(props);
+    // this.stageDOM = React.createRef();
     this.state = {
-      imageDatas: imageDatas
+      // imageDatas: imageDatas, // 图片相关数据
+      stage: {}// 舞台大小
+      // imgFigures: {}, // 图片大小
     }
   }
-  // componentWillMount() {
-  //   console.log(this.state.imageDatasArray);
+  componentWillMount() {
+    // var stageDOM = this.refs.stageDOM;
+    // console.log(stageDOM)
+  }
+  componentDidMount() {
+    // 拿到舞台的大小
+    var stageDOM = this.refs.stageDOM;
+    stage.stageW = stageDOM.scrollWidth;
+    stage.satgeH = stageDOM.scrollHeight;
+    stage.halfStageW = Math.ceil(stageDOM.scrollWidth / 2);
+    stage.halfStageH = Math.ceil(stageDOM.scrollHeight / 2);
+    console.log(stage +'父组件didMount')
+    this.setState({
+      stage: {
+        stageW : stageDOM.scrollWidth,
+        satgeH : stageDOM.scrollHeight,
+        halfStageW : Math.ceil(stageDOM.scrollWidth / 2),
+        halfStageH : Math.ceil(stageDOM.scrollHeight / 2)
+      }
+    })
+  }
+  // 从子组件获取图片相关数据
+  // getImgFigureData(data) {
+    // 计算中心图片位置
+    // this.setState({imgFigures: data}, () => {
+
+    //   console.log(this.state.imgFigures)
+    // })
   // }
+  handelClick() {
+    // console.log(this.state.stage)
+    // console.log(stage)
+  }
   render() {
     return (
-      <div className="stage">
-        <GalleryImage  imageDatas = {this.state.imageDatas}/>
+      <div className="stage" ref='stageDOM' onClick={this.handelClick.bind(this)}>
+        <GalleryImage  stage = {stage}/>
         <GalleryControl />
       </div>
     );

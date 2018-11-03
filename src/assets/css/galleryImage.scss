@@ -1,11 +1,26 @@
 .content{
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 100%;
     div{
-        width: 420px;
-        height: 286px;
+        width: 380px;
+        height: 330px;
+        padding: 40px;
+        box-sizing: border-box;
+        background-color: #fff;
+        position: absolute;
+        // top: 0;
+        // left: 0;
        img{
            width: 100%;
+       }
+       h2{
+           width: 100%;
+           color: #a7a0a2;
+           margin: 20px 0 0 0;
+           text-align: center;
+           font-size: 18px;
        }
     }
     
